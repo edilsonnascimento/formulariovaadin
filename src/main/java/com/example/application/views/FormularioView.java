@@ -6,6 +6,7 @@ import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -16,9 +17,9 @@ import com.vaadin.flow.router.Route;
 import java.util.Arrays;
 
 @Route
-public class MainView extends VerticalLayout {
+public class FormularioView extends HorizontalLayout {
 
-    public MainView() {
+    public FormularioView() {
 
         FormLayout form = new FormLayout();
 
@@ -27,37 +28,34 @@ public class MainView extends VerticalLayout {
         form.setColspan(titulo, 2);
 
         TextField nomeField = new TextField();
-        nomeField.setLabel("Nome");
         nomeField.setPlaceholder("Nome completo");
-        form.add(nomeField);
+        form.addFormItem(nomeField, "Nome");
 
         EmailField emailField = new EmailField();
-        emailField.setLabel("Email");
         emailField.setRequiredIndicatorVisible(true);
-        form.add(emailField);
+        form.addFormItem(emailField, "Email");
 
         PasswordField passwordField = new PasswordField();
-        passwordField.setLabel("Senha");
         passwordField.setRequiredIndicatorVisible(true);
-        form.add(passwordField);
+        form.addFormItem(passwordField, "Senha");
 
         TextArea descricaoField = new TextArea();
-        descricaoField.setLabel("Descrição");
-        form.add(descricaoField);
+        form.addFormItem(descricaoField,"Descrição");
 
         CheckboxGroup<String> grupoItens = new CheckboxGroup<>();
-        grupoItens.setLabel("Departamentos");
         grupoItens.setItems("Administrativo", "Financeiro", "RH", "TI");
         grupoItens.addThemeVariants(CheckboxGroupVariant.LUMO_VERTICAL);
-        form.add(grupoItens);
+        form.addFormItem(grupoItens, "Departamentos");
 
         ComboBox<String> comboItens = new ComboBox<>();
-        comboItens.setLabel("Regiões");
         comboItens.setItems(Arrays.asList("Sul", "Sudeste", "Centro oeste", "Nordeste", "Norte"));
-        form.add(comboItens);
+        form.addFormItem(comboItens, "Regiões");
 
         Button btnSalvar = new Button("Salvar");
+        form.add(btnSalvar);
 
-        add(form, btnSalvar);
+
+
+        add(form);
     }
 }
