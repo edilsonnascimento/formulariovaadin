@@ -15,6 +15,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 @Route
 public class FormularioView extends HorizontalLayout {
@@ -29,6 +30,9 @@ public class FormularioView extends HorizontalLayout {
 
         TextField nomeField = new TextField();
         nomeField.setPlaceholder("Nome completo");
+        nomeField.addValueChangeListener(event -> {
+           nomeField.setValue(nomeField.getValue().toUpperCase());
+        });
         form.addFormItem(nomeField, "Nome");
 
         EmailField emailField = new EmailField();
